@@ -101,6 +101,7 @@ def work(i):
     submit = find_element(driver,'//button[@type="submit"]',timeout=5)
     if submit:
         print('please login, after login press C for continue')
+        input("Please press enter when you are done with login process")
         with open('insta_cookies.pkl', 'rb') as file:cookies = pickle.load(file)
         for cookie in cookies:driver.add_cookie(cookie)
     df = pd.read_csv('influencer_details.csv')
@@ -127,9 +128,9 @@ def work(i):
 
 
 
-df = pd.read_csv('/home/rk/workspace/steave_insta/influencer_details.csv')
+df = pd.read_csv('influencer_details.csv')
 for i in range(len(df)):
     if df.at[i,'check'] != True:
         work(i)
         df.at[i,'check'] = 'True'
-        df.to_csv('/home/rk/workspace/steave_insta/influencer_details.csv',index=False)
+        df.to_csv('influencer_details.csv',index=False)
